@@ -61,6 +61,6 @@ public class IteratorTest {
     public void multipleHasNext() {
         Integer[][] array = {{}, {}};
         TwoDimensionalArrayIterator<Integer> iterator = new TwoDimensionalArrayIterator<>(array);
-        assertFalse(iterator.hasNext());
+        assertEquals(iterator.hasNext(), iterator.hasNext());
     }
 }
