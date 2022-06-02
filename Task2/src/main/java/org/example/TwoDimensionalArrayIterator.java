@@ -8,6 +8,7 @@ public class TwoDimensionalArrayIterator<T> implements Iterator<T> {
     private final T[][] array;
     private int row;
     private int column;
+    private final int length;
 
     public TwoDimensionalArrayIterator(T[][] array) {
         if (array == null) {
@@ -15,22 +16,21 @@ public class TwoDimensionalArrayIterator<T> implements Iterator<T> {
         }
 
         this.array = array;
+        this.length = array.length;
     }
 
     @Override
     public boolean hasNext() {
-        int arrLength = array.length;
-
-        if (arrLength == 0) {
+        if (length == 0) {
             return false;
         }
 
-        while ((row < arrLength) && (column == array[row].length)) {
+        while ((row < length) && (column == array[row].length)) {
             column = 0;
             row++;
         }
 
-        return (row < arrLength) && (column < array[row].length);
+        return (row < length) && (column < array[row].length);
     }
 
     @Override
@@ -39,13 +39,11 @@ public class TwoDimensionalArrayIterator<T> implements Iterator<T> {
             throw new NoSuchElementException("Array has no more elements");
         }
 
-        int arrLength = array.length;
-
-        if ((row < arrLength) && (column < array[row].length)) {
+        if ((row < length) && (column < array[row].length)) {
             return array[row][column++];
         }
 
-        if (++row < arrLength) {
+        if (++row < length) {
             return array[row][0];
         }
 
