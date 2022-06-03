@@ -19,7 +19,7 @@ public class SingularTest {
         add("root");
     }};
 
-    static final Set<String> RESULT_STRING_SET = new LinkedHashSet<String>() {{
+    static final Set<String> RESULT_STRING_SET = new HashSet<String>() {{
         add("root");
         add("http");
         add("ftp");
@@ -36,7 +36,7 @@ public class SingularTest {
         add("Greece");
     }};
 
-    static final Set<Object> RESULT_OBJECT_SET = new LinkedHashSet<Object>() {{
+    static final Set<Object> RESULT_OBJECT_SET = new HashSet<Object>() {{
         add(new Date(1000));
         add(new Date(2000));
         add(12);
