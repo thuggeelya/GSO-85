@@ -6,7 +6,7 @@ import java.util.LinkedHashSet;
 
 public class Singular {
 
-    public static Collection<?> getNoDuplicatesCollection(Collection<?> collection) {
+    public static Collection<?> removeDuplicates(Collection<?> collection) {
         return (collection == null) || (collection.isEmpty())
                 ? collection
 //                : new LinkedHashSet<>(collection);

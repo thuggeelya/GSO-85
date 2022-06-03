@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.example.Singular.getNoDuplicatesCollection;
+import static org.example.Singular.removeDuplicates;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -56,8 +56,8 @@ public class SingularTest {
 
     @Test
     public void makeNoDuplicatesSavingOrder() {
-        assertEquals("String collection mutation failed", getNoDuplicatesCollection(INPUT_STRING_LIST), RESULT_STRING_LIST_ORDER_SAVED);
-        assertEquals("Object collection mutation failed", getNoDuplicatesCollection(INPUT_OBJECT_LIST), RESULT_OBJECT_LIST_ORDER_SAVED);
-        assertNotEquals(getNoDuplicatesCollection(INPUT_STRING_LIST), RESULT_STRING_LIST_ORDER_CHANGED);
+        assertEquals("String collection mutation failed", removeDuplicates(INPUT_STRING_LIST), RESULT_STRING_LIST_ORDER_SAVED);
+        assertEquals("Object collection mutation failed", removeDuplicates(INPUT_OBJECT_LIST), RESULT_OBJECT_LIST_ORDER_SAVED);
+        assertNotEquals(removeDuplicates(INPUT_STRING_LIST), RESULT_STRING_LIST_ORDER_CHANGED);
     }
 }
