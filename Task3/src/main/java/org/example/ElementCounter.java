@@ -6,21 +6,29 @@ import java.util.Map;
 public class ElementCounter {
 
     public static <K> Map<K, Integer> arrayToElementCountMap(K[] array) {
-        Map<K, Integer> map = new HashMap<>();
+        Map<K, Integer> resultMap = new HashMap<>();
+        Map<K, MutableInt> map = new HashMap<>();
 
         if ((array == null) || (array.length == 0)) {
-            return map;
+            return resultMap;
         }
 
         for (K element : array) {
-//            map.merge(element, 1, Integer::sum);
-            Integer currentValue = map.putIfAbsent(element, 1);
+            MutableInt currentValue = map.get(element);
 
-            if (currentValue != null) {
-                map.put(element, ++currentValue);
+            if (currentValue == null) {
+                MutableInt defaultInt = new MutableInt();
+                currentValue = map.putIfAbsent(element, defaultInt);
+                currentValue = (currentValue == null) ? defaultInt : currentValue;
             }
+
+            currentValue.increment();
         }
 
-        return map;
+        for (Map.Entry<K, MutableInt> mapEntry : map.entrySet()) {
+            resultMap.put(mapEntry.getKey(), mapEntry.getValue().get());
+        }
+
+        return resultMap;
     }
 }

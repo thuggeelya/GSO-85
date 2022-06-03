@@ -2,10 +2,7 @@ package org.example;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.example.MapReverser.reverseMap;
 import static org.junit.Assert.assertEquals;
@@ -14,26 +11,24 @@ public class MapReverserTest {
 
     @Test
     public void reverseSimpleMap() {
-        Map<String, Long> inputMap = new HashMap<String, Long>() {{
-            put("First Max", Long.MAX_VALUE);
-            put("Second Max", Long.MAX_VALUE);
-            put("Third Max", Long.MAX_VALUE);
-            put("First Min", Long.MIN_VALUE);
-            put("Second Min", Long.MIN_VALUE);
-            put("Third Min", Long.MIN_VALUE);
-        }};
-        Map<Long, Collection<String>> expectedMap = new HashMap<Long, Collection<String>>() {{
-           put(Long.MAX_VALUE, new ArrayList<String>() {{
-               add("First Max");
-               add("Second Max");
-               add("Third Max");
-           }});
-            put(Long.MIN_VALUE, new ArrayList<String>() {{
-                add("First Min");
-                add("Second Min");
-                add("Third Min");
-            }});
-        }};
+        Map<String, Long> inputMap = new HashMap<>();
+        inputMap.put("First Max", Long.MAX_VALUE);
+        inputMap.put("Second Max", Long.MAX_VALUE);
+        inputMap.put("Third Max", Long.MAX_VALUE);
+        inputMap.put("First Min", Long.MIN_VALUE);
+        inputMap.put("Second Min", Long.MIN_VALUE);
+        inputMap.put("Third Min", Long.MIN_VALUE);
+        List<String> maxValues = new ArrayList<>();
+        maxValues.add("First Max");
+        maxValues.add("Second Max");
+        maxValues.add("Third Max");
+        List<String> minValues = new ArrayList<>();
+        minValues.add("First Min");
+        minValues.add("Second Min");
+        minValues.add("Third Min");
+        Map<Long, Collection<String>> expectedMap = new HashMap<>();
+        expectedMap.put(Long.MAX_VALUE, maxValues);
+        expectedMap.put(Long.MIN_VALUE, minValues);
         assertEquals("Maps differ", expectedMap, reverseMap(inputMap));
     }
 

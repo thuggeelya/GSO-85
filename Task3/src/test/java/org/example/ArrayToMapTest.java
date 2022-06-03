@@ -15,12 +15,11 @@ public class ArrayToMapTest {
         Object o1 = new Object();
         Object o2 = new Object();
         Object[] oArray = {o1, o1, 12, o2, 12, o1, "city"};
-        Map<?, Integer> mapExpected = new HashMap<Object, Integer>() {{
-            put(o1, 3);
-            put(12, 2);
-            put(o2, 1);
-            put("city", 1);
-        }};
+        Map<Object, Integer> mapExpected = new HashMap<>();
+        mapExpected.put(o1, 3);
+        mapExpected.put(12, 2);
+        mapExpected.put(o2, 1);
+        mapExpected.put("city", 1);
         Map<?, Integer> mapActual = arrayToElementCountMap(oArray);
         assertEquals("Maps differ", mapExpected, mapActual);
     }
